@@ -24,7 +24,7 @@ If the hand is not a flush, the keys described above are used. If it is, then ag
 Besides it turns out these keys are small enough so that the face keys and the suit keys together fit into 32-bit integers.  
 This is a surprising coincidence !
 
-<img src="./img/roadrunner.jpeg" width="400" />
+<img src="./img/roadrunner.jpeg" width="450" />
 
 **SpecialK's algo**: _Speed and elegance combined... and luck !_
 
