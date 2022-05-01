@@ -1,0 +1,68 @@
+
+2021/06/26 22:26:16 Start:       genSuitKeys
+[0 1 29 37]
+[0 1 32 39]
+[0 2 30 39]
+[0 2 31 38]
+[0 3 32 37]
+[0 3 34 39]
+[0 5 34 37]
+[0 5 36 39]
+[0 7 36 38]
+[0 7 38 39]
+early terminate after 10 solutions
+saved solutions to /ouput/suit-keys.csv
+2021/06/26 22:26:16 End:         genSuitKeys genSuitKeys took 6.614901ms
+ 
+2021/06/26 22:26:16 Start:       genFiveFlushKeys
+bootstrapping -> k=7: keys=[0 1 2 4 8 16 32 0 0 0 0 0 0]
+k=7: keys=[0 1 2 4 8 16 32 56 0 0 0 0 0] - t=0.00 s
+k=8: keys=[0 1 2 4 8 16 32 56 104 0 0 0 0] - t=0.00 s
+k=9: keys=[0 1 2 4 8 16 32 56 104 192 0 0 0] - t=0.00 s
+k=10: keys=[0 1 2 4 8 16 32 56 104 192 352 0 0] - t=0.00 s
+k=11: keys=[0 1 2 4 8 16 32 56 104 192 352 672 0] - t=0.01 s
+k=12: keys=[0 1 2 4 8 16 32 56 104 192 352 672 1288] - t=0.04 s
+saved solutions to /ouput/five-flush-keys.csv
+done
+2021/06/26 22:26:16 End:         genFiveFlushKeys genFiveFlushKeys took 35.754001ms
+ 
+2021/06/26 22:26:16 Start:       genFiveFlushKeys
+bootstrapping -> k=8: keys=[1 2 4 8 16 32 64 128 0 0 0 0 0]
+k=8: keys=[1 2 4 8 16 32 64 128 240 0 0 0 0] - t=0.00 s
+k=9: keys=[1 2 4 8 16 32 64 128 240 464 0 0 0] - t=0.00 s
+k=10: keys=[1 2 4 8 16 32 64 128 240 464 896 0 0] - t=0.02 s
+k=11: keys=[1 2 4 8 16 32 64 128 240 464 896 1728 0] - t=0.07 s
+k=12: keys=[1 2 4 8 16 32 64 128 240 464 896 1728 3328] - t=0.28 s
+saved solutions to /ouput/seven-flush-keys.csv
+done
+2021/06/26 22:26:16 End:         genFiveFlushKeys genFiveFlushKeys took 281.612442ms
+ 
+2021/06/26 22:26:16 Start:       genFiveFaceKeys
+bootstrapping -> k=3: keys=[0 1 5 0 0 0 0 0 0 0 0 0 0]
+k=3: keys=[0 1 5 22 0 0 0 0 0 0 0 0 0] - t=0.00 s
+k=4: keys=[0 1 5 22 94 0 0 0 0 0 0 0 0] - t=0.00 s
+k=5: keys=[0 1 5 22 94 312 0 0 0 0 0 0 0] - t=0.00 s
+k=6: keys=[0 1 5 22 94 312 992 0 0 0 0 0 0] - t=0.02 s
+k=7: keys=[0 1 5 22 94 312 992 2422 0 0 0 0 0] - t=0.11 s
+k=8: keys=[0 1 5 22 94 312 992 2422 5624 0 0 0 0] - t=0.57 s
+k=9: keys=[0 1 5 22 94 312 992 2422 5624 12522 0 0 0] - t=2.81 s
+k=10: keys=[0 1 5 22 94 312 992 2422 5624 12522 19998 0 0] - t=6.90 s
+k=11: keys=[0 1 5 22 94 312 992 2422 5624 12522 19998 43258 0] - t=33.66 s
+k=12: keys=[0 1 5 22 94 312 992 2422 5624 12522 19998 43258 79415] - t=123.97 s
+saved solutions to /ouput/five-face-keys.csv
+done
+2021/06/26 22:28:20 End:         genFiveFaceKeys genFiveFaceKeys took 2m3.965292243s
+ 
+2021/06/26 22:28:20 Start:       genSevenFaceKeys
+bootstrapping -> k=3: keys=[0 1 5 0 0 0 0 0 0 0 0 0 0]
+k=3: keys=[0 1 5 22 0 0 0 0 0 0 0 0 0] - t=0.000 s
+k=4: keys=[0 1 5 22 98 0 0 0 0 0 0 0 0] - t=0.000 s
+k=5: keys=[0 1 5 22 98 453 0 0 0 0 0 0 0] - t=0.009 s
+k=6: keys=[0 1 5 22 98 453 2031 0 0 0 0 0 0] - t=0.190 s
+k=7: keys=[0 1 5 22 98 453 2031 8698 0 0 0 0 0] - t=3.464 s
+k=8: keys=[0 1 5 22 98 453 2031 8698 22854 0 0 0 0] - t=20.914 s
+k=9: keys=[0 1 5 22 98 453 2031 8698 22854 83661 0 0 0] - t=331.386 s
+k=10: keys=[0 1 5 22 98 453 2031 8698 22854 83661 262349 0 0] - t=3095.745 s
+k=11: keys=[0 1 5 22 98 453 2031 8698 22854 83661 262349 636345 0] - t=15438.527 s
+<interrupted>
+
