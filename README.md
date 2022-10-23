@@ -33,17 +33,17 @@ This is a surprising coincidence !
 ```bash
 # test
 # from /poker-go
-go test -v
+go test ./poker -v
 
 # benchmark
 # from /poker-go
-go test -run=XXX -bench=.
+go test ./poker -run=XXX -bench=. -v
 ```
 
 The package is quite fast as it goes through all (7 among 52) = 133.8m cases in 4s seconds.
 
 ```bash
-❯ go test -v
+❯ go test ./poker -v
 === RUN   TestGetRankFive
 --- PASS: TestGetRankFive (0.03s)
 === RUN   TestGetRankSeven
