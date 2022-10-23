@@ -117,5 +117,8 @@ func Serve() {
 	router.POST("/calc", calcHandler)
 	router.POST("/calc-mc", calcMonteCarloHandler)
 
-	router.Run("0.0.0.0:5000")
+	// router.Run("0.0.0.0:5000")
+	certFile := "./certs/tls.crt"
+	keyFile := "./certs/tls.key"
+	router.RunTLS("0.0.0.0:5000", certFile, keyFile)
 }

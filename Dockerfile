@@ -18,6 +18,8 @@ WORKDIR /
 
 COPY --from=builder /go/src/app /
 
+COPY ./certs ./certs
+
 ENV GIN_MODE=release
 
 EXPOSE 5000
