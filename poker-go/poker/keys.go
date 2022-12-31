@@ -11,12 +11,12 @@ const SUIT_BIT_SHIFT = 9
 var CARD_NO = make(map[string]int)
 var CARD_SY = make(map[int]string)
 
-//  (c)lubs, (d)iamonds, (h)earts, (s)pades
-var SUIT = [4]string{"c", "d", "h", "s"}
+// (C)lubs, (D)iamonds, (H)earts, (S)pades
+var SUIT = [4]string{"C", "D", "H", "S"}
 
 var SUIT_KEY = [4]uint32{0, 1, 29, 37}
 
-//  faces: 2, 3, 4, 5, 6, 7, 8, 9, T(10), (J)ack, (Q)ueen, (K)ing, (A)ce
+// faces: 2, 3, 4, 5, 6, 7, 8, 9, T(10), (J)ack, (Q)ueen, (K)ing, (A)ce
 var FACE = [13]string{"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"}
 
 var FLUSH_FIVE_KEY = [NB_FACE]uint32{0, 1, 2, 4, 8, 16, 32, 56, 104, 192, 352, 672, 1288}
