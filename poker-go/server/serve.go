@@ -3,6 +3,7 @@ package server
 import (
 	"poker/poker"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -104,6 +105,18 @@ func Serve() {
 
 	router := gin.Default()
 	router.SetTrustedProxies(nil)
+
+	// cors must be before endpoints
+	corsConfig := cors.New(cors.Config{
+		AllowMethods:     []string{"GET", "POST", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "User-Agent", "Referrer", "Host", "Token"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		AllowAllOrigins:  false,
+		AllowOriginFunc:  func(origin string) bool { return true },
+		MaxAge:           86400,
+	})
+	router.Use(corsConfig)
 
 	router.GET("/healthz", func(c *gin.Context) {
 		c.JSON(200, "Ok")
