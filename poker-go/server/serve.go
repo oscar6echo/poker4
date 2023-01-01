@@ -173,8 +173,8 @@ func Serve() {
 	router.GET("/stats-five", _statsHander.GetStatsFive)
 	router.GET("/stats-seven", _statsHander.GetStatsSeven)
 
-	router.GET("/rank-five", rankFiveHandler)
-	router.GET("/rank-seven", rankSevenHandler)
+	router.POST("/rank-five", rankFiveHandler)
+	router.POST("/rank-seven", rankSevenHandler)
 
 	router.POST("/calc", calcHandler)
 	router.POST("/calc-mc", calcMonteCarloHandler)

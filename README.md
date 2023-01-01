@@ -103,8 +103,11 @@ curl https://localhost:5000/stats-seven
 # response
 # {"flush":{"NbHand":1277,"MinRank":5863,"MaxRank":7139,"NbOccur":4047644},"four-of-a-kind":{"NbHand":156,"MinRank":7296,"MaxRank":7451,"NbOccur":224848},"full-house":{"NbHand":156,"MinRank":7140,"MaxRank":7295,"NbOccur":3473184},"high-card":{"NbHand":407,"MinRank":48,"MaxRank":1276,"NbOccur":23294460},"one-pair":{"NbHand":1470,"MinRank":1295,"MaxRank":4136,"NbOccur":58627800},"straight":{"NbHand":10,"MinRank":5853,"MaxRank":5862,"NbOccur":6180020},"straight-flush":{"NbHand":10,"MinRank":7452,"MaxRank":7461,"NbOccur":41584},"three-of-a-kind":{"NbHand":575,"MinRank":5003,"MaxRank":5852,"NbOccur":6461620},"two-pairs":{"NbHand":763,"MinRank":4140,"MaxRank":4994,"NbOccur":31433400}}
 
-curl -X POST  -d '{"cards":[8,29,4,11,32]]}' https://localhost:5000/rank-five
-# [{"Win":0.64821345,"Tie":0.045598652},{"Win":0.26058924,"Tie":0.045598652}]
+curl -X POST  -d '{"cards":[[8,29,4,11,32],[9,30,5,12,33]]}' https://localhost:5000/rank-five
+# [1768,90]
+
+curl -X POST  -d '{"cards":[[8,29,4,11,32,18,19],[9,30,5,12,33,19,20]]}' https://localhost:5000/rank-seven
+# [4231,5855]%
 
 curl -X POST  -d '{"players":[[8,29], [4,11]],"table":[]}' https://localhost:5000/calc
 # [{"Win":0.64821345,"Tie":0.045598652},{"Win":0.26058924,"Tie":0.045598652}]
