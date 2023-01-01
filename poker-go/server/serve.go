@@ -14,6 +14,14 @@ type configData struct {
 	CARD_SY map[int]string
 }
 
+type rankFiveBody struct {
+	Cards [][5]int `json:"cards" binding:"required"`
+}
+
+type rankSevenBody struct {
+	Cards [][7]int `json:"cards" binding:"required"`
+}
+
 type calcBody struct {
 	Players poker.PlayerCards `json:"players" binding:"required"`
 	Table   poker.TableCards  `json:"table" binding:"required"`
@@ -24,6 +32,44 @@ type calcMonteCarloBody struct {
 	Table    poker.TableCards `json:"table" binding:"required"`
 	NbPlayer int              `json:"nb_player" binding:"required"`
 	NbGame   int              `json:"nb_game"`
+}
+
+func rankFiveHandler(c *gin.Context) {
+	var body rankFiveBody
+
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.JSON(401, gin.H{"error": "invalid rankFive input"})
+		return
+	}
+	CustomLog("/rank-five", "body", body)
+
+	var ranks = make([]int, len(body.Cards))
+
+	for i, cards := range body.Cards {
+		r := poker.GetRankFive(cards)
+		ranks[i] = r
+	}
+
+	c.JSON(200, ranks)
+}
+
+func rankSevenHandler(c *gin.Context) {
+	var body rankSevenBody
+
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.JSON(401, gin.H{"error": "invalid rankSeven input"})
+		return
+	}
+	CustomLog("/rank-seven", "body", body)
+
+	var ranks = make([]int, len(body.Cards))
+
+	for i, cards := range body.Cards {
+		r := poker.GetRankSeven(cards)
+		ranks[i] = r
+	}
+
+	c.JSON(200, ranks)
 }
 
 func calcHandler(c *gin.Context) {
@@ -126,6 +172,9 @@ func Serve() {
 
 	router.GET("/stats-five", _statsHander.GetStatsFive)
 	router.GET("/stats-seven", _statsHander.GetStatsSeven)
+
+	router.GET("/rank-five", rankFiveHandler)
+	router.GET("/rank-seven", rankSevenHandler)
 
 	router.POST("/calc", calcHandler)
 	router.POST("/calc-mc", calcMonteCarloHandler)
