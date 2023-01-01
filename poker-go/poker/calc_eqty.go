@@ -2,7 +2,6 @@ package poker
 
 import (
 	"fmt"
-	"log"
 	"math/rand"
 )
 
@@ -45,7 +44,8 @@ func CalcEquity(playerCards [][2]int, tableCards []int) []handEquity {
 
 	T := len(tableCards)
 	if T != 0 && T != 3 && T != 4 && T != 5 {
-		log.Fatal("len(tableCards) must be 0, 3, 4, 5")
+		fmt.Println("len(tableCards) must be 0, 3, 4, 5")
+		// log.Fatal("len(tableCards) must be 0, 3, 4, 5")
 	}
 
 	var deckCards []int = buildDeckCards(playerCards, tableCards)
@@ -219,12 +219,14 @@ func updateEquity(playerCards PlayerCards, tableCards TableCards, rank []int, eq
 func CalcEquityMonteCarlo(playerCards [2]int, tableCards []int, nbPlayer int, nbGame int) handEquity {
 
 	if nbPlayer < 1 || nbPlayer > 9 {
-		log.Fatal("nbPlayer must be between 1 and 9")
+		fmt.Println("nbPlayer must be between 1 and 9")
+		// log.Fatal("nbPlayer must be between 1 and 9")
 	}
 
 	T := len(tableCards)
 	if T != 0 && T != 3 && T != 4 && T != 5 {
-		log.Fatal("len(tableCards) must be 0, 3, 4, 5")
+		fmt.Println("len(tableCards) must be 0, 3, 4, 5")
+		// log.Fatal("len(tableCards) must be 0, 3, 4, 5")
 	}
 
 	var eqty handEquity = handEquity{Win: 0, Tie: 0}

@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"poker/poker"
 
 	"github.com/gin-contrib/cors"
@@ -81,6 +82,19 @@ func calcHandler(c *gin.Context) {
 	}
 	CustomLog("/calc", "body", body)
 
+	P := len(body.Players)
+	fmt.Println("P", P)
+	if P < 2 || P > 10 {
+		c.JSON(422, gin.H{"error": "nb_player must be between 2 and 10"})
+		return
+	}
+	T := len(body.Table)
+	fmt.Println("T", T)
+	if T != 0 && T != 3 && T != 4 && T != 5 {
+		c.JSON(423, gin.H{"error": "XXX len(table) must be 0, 3, 4, 5"})
+		return
+	}
+
 	var eqty = poker.CalcEquity(body.Players, body.Table)
 
 	c.JSON(200, eqty)
@@ -94,10 +108,12 @@ func calcMonteCarloHandler(c *gin.Context) {
 		return
 	}
 
-	if body.NbPlayer < 1 || body.NbPlayer > 9 {
-		c.JSON(422, gin.H{"error": "nb_player must be between 1 and 9"})
+	P := body.NbPlayer
+	if P < 2 || P > 10 {
+		c.JSON(422, gin.H{"error": "nb_player must be between 2 and 10"})
 		return
 	}
+
 	T := len(body.Table)
 	if T != 0 && T != 3 && T != 4 && T != 5 {
 		c.JSON(423, gin.H{"error": "len(table) must be 0, 3, 4, 5"})
