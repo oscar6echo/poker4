@@ -30,7 +30,8 @@ func TryCalcEquity() {
 func TryCalcEquityMonteCarlo() {
 	defer track(runningtime("TryCalcEquityMonteCarlo"))
 
-	var playerCards = [2]int{2, 18}
+	var playerCards = PlayerCards{{2, 18}, {21, -1}}
+	// var playerCards = [2]int{2, 18}
 	var tableCards = []int{41, 8, 30}
 	nbPlayer := 4
 	nbGame := int(1e6)
@@ -161,13 +162,18 @@ func CalcEquity(playerCards [][2]int, tableCards []int) []handEquity {
 }
 
 func buildDeckCards(playerCards [][2]int, tableCards []int) []int {
+	// playerCards equal to -1 are supposed unknown
 	var usedCards []int
 	var deckCards []int
 	var isUsed bool
 
 	for _, e := range playerCards {
-		usedCards = append(usedCards, e[0])
-		usedCards = append(usedCards, e[1])
+		if e[0] != -1 {
+			usedCards = append(usedCards, e[0])
+		}
+		if e[1] != -1 {
+			usedCards = append(usedCards, e[1])
+		}
 	}
 
 	for _, e := range tableCards {
@@ -216,9 +222,18 @@ func updateEquity(playerCards PlayerCards, tableCards TableCards, rank []int, eq
 	}
 }
 
-func CalcEquityMonteCarlo(playerCards [2]int, tableCards []int, nbPlayer int, nbGame int) handEquity {
+func CalcEquityMonteCarlo(playerCards PlayerCards, tableCards []int, nbPlayer int, nbGame int) handEquity {
+	// playerCards equal to -1 are supposed unknown
 
-	if nbPlayer < 1 || nbPlayer > 9 {
+	if playerCards[0][0] == -1 || playerCards[0][1] == -1 {
+		fmt.Println("playerCards[0] must be fully determined")
+	}
+
+	if len(playerCards) > nbPlayer {
+		fmt.Println("len(playerCards) must be <= nbPlayer")
+	}
+
+	if nbPlayer < 2 || nbPlayer > 10 {
 		fmt.Println("nbPlayer must be between 1 and 9")
 		// log.Fatal("nbPlayer must be between 1 and 9")
 	}
@@ -229,11 +244,18 @@ func CalcEquityMonteCarlo(playerCards [2]int, tableCards []int, nbPlayer int, nb
 		// log.Fatal("len(tableCards) must be 0, 3, 4, 5")
 	}
 
-	var eqty handEquity = handEquity{Win: 0, Tie: 0}
+	nbPlayerWithCards := len(playerCards)
+	nbPlayerCards := 0
+	for _, p := range playerCards {
+		for i := 0; i < 2; i++ {
+			if p[i] != -1 {
+				nbPlayerCards += 1
+			}
+		}
+	}
 
-	var pCards = [1][2]int{{playerCards[0], playerCards[1]}}
-	var deckCards []int = buildDeckCards(pCards[:], tableCards)
-	var rndCards = make([]int, 2*(nbPlayer-1)+5-T)
+	var deckCards []int = buildDeckCards(playerCards, tableCards)
+	var rndCards = make([]int, 2*nbPlayer-nbPlayerCards+5-T)
 	var rndTableCards = make([]int, 5-T)
 
 	var p, r, t, g int
@@ -241,6 +263,8 @@ func CalcEquityMonteCarlo(playerCards [2]int, tableCards []int, nbPlayer int, nb
 	var cards [7]int
 	var maxRank, nbMax int
 	var rank = make([]int, nbPlayer)
+
+	var eqty handEquity = handEquity{Win: 0, Tie: 0}
 
 	for g = 0; g < nbGame; g++ {
 		drawRandomCards(rndCards, deckCards)
@@ -253,13 +277,28 @@ func CalcEquityMonteCarlo(playerCards [2]int, tableCards []int, nbPlayer int, nb
 		for p = 0; p < nbPlayer; p++ {
 			// fmt.Println(">", p, r)
 			if p == 0 {
-				c1 = playerCards[0]
-				c2 = playerCards[1]
+				c1 = playerCards[0][0]
+				c2 = playerCards[0][1]
 			} else {
-				c1 = rndCards[r]
-				r++
-				c2 = rndCards[r]
-				r++
+				if p < nbPlayerWithCards {
+					if playerCards[p][0] != -1 {
+						c1 = playerCards[p][0]
+					} else {
+						c1 = rndCards[r]
+						r++
+					}
+					if playerCards[p][1] != -1 {
+						c2 = playerCards[p][1]
+					} else {
+						c2 = rndCards[r]
+						r++
+					}
+				} else {
+					c1 = rndCards[r]
+					r++
+					c2 = rndCards[r]
+					r++
+				}
 			}
 			if T > 0 {
 				c3 = tableCards[0]

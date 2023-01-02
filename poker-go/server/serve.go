@@ -29,10 +29,10 @@ type calcBody struct {
 }
 
 type calcMonteCarloBody struct {
-	Player   [2]int           `json:"players" binding:"required"`
-	Table    poker.TableCards `json:"table" binding:"required"`
-	NbPlayer int              `json:"nb_player" binding:"required"`
-	NbGame   int              `json:"nb_game"`
+	Players  poker.PlayerCards `json:"players" binding:"required"`
+	Table    poker.TableCards  `json:"table" binding:"required"`
+	NbPlayer int               `json:"nb_player" binding:"required"`
+	NbGame   int               `json:"nb_game"`
 }
 
 func rankFiveHandler(c *gin.Context) {
@@ -128,7 +128,7 @@ func calcMonteCarloHandler(c *gin.Context) {
 
 	CustomLog("/calc-mc", "body", body)
 
-	var eqty = poker.CalcEquityMonteCarlo(body.Player, body.Table, body.NbPlayer, body.NbGame)
+	var eqty = poker.CalcEquityMonteCarlo(body.Players, body.Table, body.NbPlayer, body.NbGame)
 
 	c.JSON(200, eqty)
 }
