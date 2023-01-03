@@ -1,0 +1,426 @@
+{
+    "schemes": [
+        "https"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Texas Hold'em Hand Equity Calculator.",
+        "title": "Poker API",
+        "contact": {},
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:5000",
+    "paths": {
+        "/calc": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Calculate"
+                ],
+                "summary": "exhaustive calculator",
+                "parameters": [
+                    {
+                        "description": "game cards: table and players",
+                        "name": "cards",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/server.calcBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "players hands equity",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/poker.handEquity"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "invalid calc input"
+                    },
+                    "422": {
+                        "description": "nb_player must be between 2 and 10"
+                    },
+                    "423": {
+                        "description": "len(table) must be 0, 3, 4, 5"
+                    }
+                }
+            }
+        },
+        "/calc-mc": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Calculate"
+                ],
+                "summary": "monte carlo calculator",
+                "parameters": [
+                    {
+                        "description": "game cards: table and players",
+                        "name": "cards",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/server.calcMonteCarloBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "players hands equity",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/poker.handEquity"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "invalid calc-mc input"
+                    },
+                    "422": {
+                        "description": "nb_player must be between 2 and 10"
+                    },
+                    "423": {
+                        "description": "nb_game must be set"
+                    }
+                }
+            }
+        },
+        "/config": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Static"
+                ],
+                "summary": "static data",
+                "responses": {
+                    "200": {
+                        "description": "poker API static data",
+                        "schema": {
+                            "$ref": "#/definitions/server.configData"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/healthz": {
+            "get": {
+                "produces": [
+                    "text/plain"
+                ],
+                "tags": [
+                    "Status"
+                ],
+                "summary": "server status",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/rank-five": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Hand"
+                ],
+                "summary": "evaluate 5-card hand",
+                "parameters": [
+                    {
+                        "description": "5-card hands",
+                        "name": "cards",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/server.rankFiveBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ranks",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "invalid rank-five input"
+                    }
+                }
+            }
+        },
+        "/rank-seven": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Hand"
+                ],
+                "summary": "evaluate 7-card hand",
+                "parameters": [
+                    {
+                        "description": "5-card hands",
+                        "name": "cards",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/server.rankSevenBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ranks",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "invalid rank-seven input"
+                    }
+                }
+            }
+        },
+        "/stats-five": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Stats"
+                ],
+                "summary": "5-card hands stats",
+                "responses": {
+                    "200": {
+                        "description": "5-card hands stats",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "#/definitions/poker.HandTypeStatsStruct"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/stats-seven": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Stats"
+                ],
+                "summary": "7-card hands stats",
+                "responses": {
+                    "200": {
+                        "description": "7-card hands stats",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "#/definitions/poker.HandTypeStatsStruct"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "poker.HandTypeStatsStruct": {
+            "type": "object",
+            "properties": {
+                "maxRank": {
+                    "type": "integer"
+                },
+                "minRank": {
+                    "type": "integer"
+                },
+                "nbHand": {
+                    "type": "integer"
+                },
+                "nbOccur": {
+                    "type": "integer"
+                }
+            }
+        },
+        "poker.handEquity": {
+            "type": "object",
+            "properties": {
+                "tie": {
+                    "type": "number"
+                },
+                "win": {
+                    "type": "number"
+                }
+            }
+        },
+        "server.calcBody": {
+            "type": "object",
+            "required": [
+                "players",
+                "table"
+            ],
+            "properties": {
+                "players": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "table": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "server.calcMonteCarloBody": {
+            "type": "object",
+            "required": [
+                "nb_player",
+                "players",
+                "table"
+            ],
+            "properties": {
+                "nb_game": {
+                    "type": "integer"
+                },
+                "nb_player": {
+                    "type": "integer"
+                },
+                "players": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "table": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "server.configData": {
+            "type": "object",
+            "properties": {
+                "card_NO": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer"
+                    }
+                },
+                "card_SY": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "face": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "suit": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "server.rankFiveBody": {
+            "type": "object",
+            "required": [
+                "cards"
+            ],
+            "properties": {
+                "cards": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "server.rankSevenBody": {
+            "type": "object",
+            "required": [
+                "cards"
+            ],
+            "properties": {
+                "cards": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

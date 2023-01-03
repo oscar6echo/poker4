@@ -6,6 +6,9 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 type configData struct {
@@ -35,6 +38,24 @@ type calcMonteCarloBody struct {
 	NbGame   int               `json:"nb_game"`
 }
 
+//	@Tags		Status
+//	@Summary	server status
+//	@Produce	plain
+//	@Router		/healthz [get]
+//	@Success	200
+//	@Failure	500
+func healthzHandler(c *gin.Context) {
+	c.JSON(200, "Ok")
+}
+
+//	@Tags		Hand
+//	@Summary	evaluate 5-card hand
+//	@Accept		json
+//	@Produce	json
+//	@Param		cards	body	rankFiveBody	true	"5-card hands"
+//	@Router		/rank-five [post]
+//	@Success	200	{object}	[]int	"ranks"
+//	@Failure	401	"invalid rank-five input"
 func rankFiveHandler(c *gin.Context) {
 	var body rankFiveBody
 
@@ -54,6 +75,14 @@ func rankFiveHandler(c *gin.Context) {
 	c.JSON(200, ranks)
 }
 
+//	@Tags		Hand
+//	@Summary	evaluate 7-card hand
+//	@Accept		json
+//	@Produce	json
+//	@Param		cards	body	rankSevenBody	true	"5-card hands"
+//	@Router		/rank-seven [post]
+//	@Success	200	{object}	[]int	"ranks"
+//	@Failure	401	"invalid rank-seven input"
 func rankSevenHandler(c *gin.Context) {
 	var body rankSevenBody
 
@@ -73,6 +102,16 @@ func rankSevenHandler(c *gin.Context) {
 	c.JSON(200, ranks)
 }
 
+//	@Tags		Calculate
+//	@Summary	exhaustive calculator
+//	@Accept		json
+//	@Produce	json
+//	@Param		cards	body	calcBody	true	"game cards: table and players"
+//	@Router		/calc [post]
+//	@Success	200	{object}	[]poker.handEquity	"players hands equity"
+//	@Failure	401	"invalid calc input"
+//	@Failure	422	"nb_player must be between 2 and 10"
+//	@Failure	423	"len(table) must be 0, 3, 4, 5"
 func calcHandler(c *gin.Context) {
 	var body calcBody
 
@@ -91,7 +130,7 @@ func calcHandler(c *gin.Context) {
 	T := len(body.Table)
 	fmt.Println("T", T)
 	if T != 0 && T != 3 && T != 4 && T != 5 {
-		c.JSON(423, gin.H{"error": "XXX len(table) must be 0, 3, 4, 5"})
+		c.JSON(423, gin.H{"error": "len(table) must be 0, 3, 4, 5"})
 		return
 	}
 
@@ -100,6 +139,17 @@ func calcHandler(c *gin.Context) {
 	c.JSON(200, eqty)
 }
 
+//	@Tags		Calculate
+//	@Summary	monte carlo calculator
+//	@Accept		json
+//	@Produce	json
+//	@Param		cards	body	calcMonteCarloBody	true	"game cards: table and players"
+//	@Router		/calc-mc [post]
+//	@Success	200	{object}	[]poker.handEquity	"players hands equity"
+//	@Failure	401	"invalid calc-mc input"
+//	@Failure	422	"nb_player must be between 2 and 10"
+//	@Failure	423	"len(table) must be 0, 3, 4, 5"
+//	@Failure	423	"nb_game must be set"
 func calcMonteCarloHandler(c *gin.Context) {
 	var body calcMonteCarloBody
 
@@ -133,6 +183,12 @@ func calcMonteCarloHandler(c *gin.Context) {
 	c.JSON(200, eqty)
 }
 
+//	@Tags		Static
+//	@Summary	static data
+//	@Produce	json
+//	@Router		/config [get]
+//	@Success	200	{object}	configData	"poker API static data"
+//	@Failure	500
 func configHandler(c *gin.Context) {
 	var config = configData{
 		FACE:    poker.FACE,
@@ -143,27 +199,78 @@ func configHandler(c *gin.Context) {
 	c.JSON(200, config)
 }
 
-type statsHandler struct {
-	statsFive  map[string]poker.HandTypeStatsStruct
-	statsSeven map[string]poker.HandTypeStatsStruct
+// ------------------------------------
+// BOGUS HANDLER NECESSARY FOR SWAGGER
+// REAL HANDLER DEFINED IN Serve
+// ------------------------------------
+//	@Tags		Stats
+//	@Summary	5-card hands stats
+//	@Produce	json
+//	@Router		/stats-five [get]
+//	@Success	200	{object}	map[string]poker.HandTypeStatsStruct	"5-card hands stats"
+//	@Failure	500
+func statsFiveHandler(c *gin.Context) {
+	c.JSON(200, "bogus")
 }
 
-func (this *statsHandler) GetStatsFive(c *gin.Context) {
-	c.JSON(200, this.statsFive)
+// ------------------------------------
+// BOGUS HANDLER NECESSARY FOR SWAGGER
+// REAL HANDLER DEFINED IN Serve
+// ------------------------------------
+//	@Tags		Stats
+//	@Summary	7-card hands stats
+//	@Produce	json
+//	@Router		/stats-seven [get]
+//	@Success	200	{object}	map[string]poker.HandTypeStatsStruct	"7-card hands stats"
+//	@Failure	500
+func statsSevenHandler(c *gin.Context) {
+	c.JSON(200, "bogus")
 }
 
-func (this *statsHandler) GetStatsSeven(c *gin.Context) {
-	c.JSON(200, this.statsSeven)
-}
+// type statsHandler struct {
+// 	statsFive  map[string]poker.HandTypeStatsStruct
+// 	statsSeven map[string]poker.HandTypeStatsStruct
+// }
+
+// func (this *statsHandler) GetStatsFive(c *gin.Context) {
+// 	c.JSON(200, this.statsFive)
+// }
+
+// func (this *statsHandler) GetStatsSeven(c *gin.Context) {
+// 	c.JSON(200, this.statsSeven)
+// }
 
 func Serve() {
 
 	poker.Setup(false)
 
-	var _statsHander = statsHandler{
-		statsFive:  poker.BuildFiveHandStats(true),
-		statsSeven: poker.BuildSevenHandStats(true),
+	statsFive := poker.BuildFiveHandStats(true)
+	statsSeven := poker.BuildSevenHandStats(true)
+
+	//	@Tags		Stats
+	//	@Summary	5-card hands stats
+	//	@Produce	json
+	//	@Router		/stats-five [get]
+	//	@Success	200	{object}	map[string]poker.HandTypeStatsStruct	"5-card hands stats"
+	//	@Failure	500
+	var statsFiveHandler2 = func(c *gin.Context) {
+		c.JSON(200, statsFive)
 	}
+
+	//	@Tags		Stats
+	//	@Summary	7-card hands stats
+	//	@Produce	json
+	//	@Router		/stats-seven [get]
+	//	@Success	200	{object}	map[string]poker.HandTypeStatsStruct	"7-card hands stats"
+	//	@Failure	500
+	var statsSevenHandler2 = func(c *gin.Context) {
+		c.JSON(200, statsSeven)
+	}
+
+	// var _statsHander = statsHandler{
+	// 	statsFive:  poker.BuildFiveHandStats(true),
+	// 	statsSeven: poker.BuildSevenHandStats(true),
+	// }
 
 	router := gin.Default()
 	router.SetTrustedProxies(nil)
@@ -180,20 +287,22 @@ func Serve() {
 	})
 	router.Use(corsConfig)
 
-	router.GET("/healthz", func(c *gin.Context) {
-		c.JSON(200, "Ok")
-	})
+	router.GET("/healthz", healthzHandler)
 
 	router.GET("/config", configHandler)
 
-	router.GET("/stats-five", _statsHander.GetStatsFive)
-	router.GET("/stats-seven", _statsHander.GetStatsSeven)
+	router.GET("/stats-five", statsFiveHandler2)
+	router.GET("/stats-seven", statsSevenHandler2)
+	// router.GET("/stats-five", _statsHander.GetStatsFive)
+	// router.GET("/stats-seven", _statsHander.GetStatsSeven)
 
 	router.POST("/rank-five", rankFiveHandler)
 	router.POST("/rank-seven", rankSevenHandler)
 
 	router.POST("/calc", calcHandler)
 	router.POST("/calc-mc", calcMonteCarloHandler)
+
+	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// router.Run("0.0.0.0:5000")
 	certFile := "./certs/tls.crt"

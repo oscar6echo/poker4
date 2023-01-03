@@ -1,0 +1,276 @@
+definitions:
+  poker.HandTypeStatsStruct:
+    properties:
+      maxRank:
+        type: integer
+      minRank:
+        type: integer
+      nbHand:
+        type: integer
+      nbOccur:
+        type: integer
+    type: object
+  poker.handEquity:
+    properties:
+      tie:
+        type: number
+      win:
+        type: number
+    type: object
+  server.calcBody:
+    properties:
+      players:
+        items:
+          items:
+            type: integer
+          type: array
+        type: array
+      table:
+        items:
+          type: integer
+        type: array
+    required:
+    - players
+    - table
+    type: object
+  server.calcMonteCarloBody:
+    properties:
+      nb_game:
+        type: integer
+      nb_player:
+        type: integer
+      players:
+        items:
+          items:
+            type: integer
+          type: array
+        type: array
+      table:
+        items:
+          type: integer
+        type: array
+    required:
+    - nb_player
+    - players
+    - table
+    type: object
+  server.configData:
+    properties:
+      card_NO:
+        additionalProperties:
+          type: integer
+        type: object
+      card_SY:
+        additionalProperties:
+          type: string
+        type: object
+      face:
+        items:
+          type: string
+        type: array
+      suit:
+        items:
+          type: string
+        type: array
+    type: object
+  server.rankFiveBody:
+    properties:
+      cards:
+        items:
+          items:
+            type: integer
+          type: array
+        type: array
+    required:
+    - cards
+    type: object
+  server.rankSevenBody:
+    properties:
+      cards:
+        items:
+          items:
+            type: integer
+          type: array
+        type: array
+    required:
+    - cards
+    type: object
+host: localhost:5000
+info:
+  contact: {}
+  description: Texas Hold'em Hand Equity Calculator.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  title: Poker API
+  version: "1.0"
+paths:
+  /calc:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 'game cards: table and players'
+        in: body
+        name: cards
+        required: true
+        schema:
+          $ref: '#/definitions/server.calcBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: players hands equity
+          schema:
+            items:
+              $ref: '#/definitions/poker.handEquity'
+            type: array
+        "401":
+          description: invalid calc input
+        "422":
+          description: nb_player must be between 2 and 10
+        "423":
+          description: len(table) must be 0, 3, 4, 5
+      summary: exhaustive calculator
+      tags:
+      - Calculate
+  /calc-mc:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 'game cards: table and players'
+        in: body
+        name: cards
+        required: true
+        schema:
+          $ref: '#/definitions/server.calcMonteCarloBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: players hands equity
+          schema:
+            items:
+              $ref: '#/definitions/poker.handEquity'
+            type: array
+        "401":
+          description: invalid calc-mc input
+        "422":
+          description: nb_player must be between 2 and 10
+        "423":
+          description: nb_game must be set
+      summary: monte carlo calculator
+      tags:
+      - Calculate
+  /config:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: poker API static data
+          schema:
+            $ref: '#/definitions/server.configData'
+        "500":
+          description: Internal Server Error
+      summary: static data
+      tags:
+      - Static
+  /healthz:
+    get:
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      summary: server status
+      tags:
+      - Status
+  /rank-five:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 5-card hands
+        in: body
+        name: cards
+        required: true
+        schema:
+          $ref: '#/definitions/server.rankFiveBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ranks
+          schema:
+            items:
+              type: integer
+            type: array
+        "401":
+          description: invalid rank-five input
+      summary: evaluate 5-card hand
+      tags:
+      - Hand
+  /rank-seven:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 5-card hands
+        in: body
+        name: cards
+        required: true
+        schema:
+          $ref: '#/definitions/server.rankSevenBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ranks
+          schema:
+            items:
+              type: integer
+            type: array
+        "401":
+          description: invalid rank-seven input
+      summary: evaluate 7-card hand
+      tags:
+      - Hand
+  /stats-five:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 5-card hands stats
+          schema:
+            additionalProperties:
+              $ref: '#/definitions/poker.HandTypeStatsStruct'
+            type: object
+        "500":
+          description: Internal Server Error
+      summary: 5-card hands stats
+      tags:
+      - Stats
+  /stats-seven:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 7-card hands stats
+          schema:
+            additionalProperties:
+              $ref: '#/definitions/poker.HandTypeStatsStruct'
+            type: object
+        "500":
+          description: Internal Server Error
+      summary: 7-card hands stats
+      tags:
+      - Stats
+schemes:
+- https
+swagger: "2.0"
