@@ -2,6 +2,7 @@ package server
 
 import (
 	"fmt"
+	"net/http"
 	"poker/poker"
 
 	"github.com/gin-contrib/cors"
@@ -203,6 +204,7 @@ func configHandler(c *gin.Context) {
 // BOGUS HANDLER NECESSARY FOR SWAGGER
 // REAL HANDLER DEFINED IN Serve
 // ------------------------------------
+//
 //	@Tags		Stats
 //	@Summary	5-card hands stats
 //	@Produce	json
@@ -217,6 +219,7 @@ func statsFiveHandler(c *gin.Context) {
 // BOGUS HANDLER NECESSARY FOR SWAGGER
 // REAL HANDLER DEFINED IN Serve
 // ------------------------------------
+//
 //	@Tags		Stats
 //	@Summary	7-card hands stats
 //	@Produce	json
@@ -225,6 +228,10 @@ func statsFiveHandler(c *gin.Context) {
 //	@Failure	500
 func statsSevenHandler(c *gin.Context) {
 	c.JSON(200, "bogus")
+}
+
+func swaggerRedirectHandler(c *gin.Context) {
+	c.Redirect(http.StatusMovedPermanently, "/docs/index.html")
 }
 
 // type statsHandler struct {
@@ -303,6 +310,8 @@ func Serve() {
 	router.POST("/calc-mc", calcMonteCarloHandler)
 
 	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	router.GET("/docs", swaggerRedirectHandler)
 
 	// router.Run("0.0.0.0:5000")
 	certFile := "./certs/tls.crt"

@@ -60,6 +60,16 @@ ok      poker/poker     4.000s
 
 ## Build API server
 
+- build docs
+
+```bash
+# from /poker-go
+# build
+swag init
+```
+
+- build module
+
 ```bash
 # from /poker-go
 # build
