@@ -3,6 +3,9 @@ package poker
 import (
 	"fmt"
 	"math/rand"
+	"runtime"
+	"sync"
+	"time"
 )
 
 type PlayerCards [][2]int
@@ -223,8 +226,50 @@ func updateEquity(playerCards PlayerCards, tableCards TableCards, rank []int, eq
 }
 
 func CalcEquityMonteCarlo(playerCards PlayerCards, tableCards []int, nbPlayer int, nbGame int) handEquity {
-	// playerCards equal to -1 are supposed unknown
 
+	nCoRoutine := runtime.GOMAXPROCS(runtime.NumCPU())
+	nbGamePerCoRoutine := nbGame / nCoRoutine
+
+	fmt.Printf("CalcEquityMonteCarlo: nbGame=%d split over %d goroutines each with nbGame=%d\n", nbGame, nCoRoutine, nbGamePerCoRoutine)
+
+	wg := sync.WaitGroup{}
+	c := make(chan handEquity)
+
+	for i := 0; i < nCoRoutine; i++ {
+		wg.Add(1)
+		source := rand.NewSource(time.Now().UnixNano())
+		generator := rand.New(source) // crucial to create a random source per coroutine
+		go CalcEquityMonteCarloOneCoRoutine(playerCards, tableCards, nbPlayer, nbGamePerCoRoutine, generator, &wg, c)
+	}
+
+	go func() {
+		wg.Wait()
+		close(c)
+	}()
+
+	eqtys := make([]handEquity, 0)
+	for response := range c {
+		eqtys = append(eqtys, response)
+	}
+
+	eqty := handEquity{Win: 0, Tie: 0}
+	for _, e := range eqtys {
+		eqty.Win += e.Win
+		eqty.Tie += e.Tie
+	}
+
+	n := float32(len(eqtys))
+	eqty.Win /= n
+	eqty.Tie /= n
+
+	return eqty
+}
+
+func CalcEquityMonteCarloOneCoRoutine(playerCards PlayerCards, tableCards []int, nbPlayer int, nbGame int, generator *rand.Rand, wg *sync.WaitGroup, c chan handEquity) {
+
+	defer wg.Done()
+
+	// playerCards equal to -1 are supposed unknown
 	if playerCards[0][0] == -1 || playerCards[0][1] == -1 {
 		fmt.Println("playerCards[0] must be fully determined")
 	}
@@ -267,7 +312,7 @@ func CalcEquityMonteCarlo(playerCards PlayerCards, tableCards []int, nbPlayer in
 	var eqty handEquity = handEquity{Win: 0, Tie: 0}
 
 	for g = 0; g < nbGame; g++ {
-		drawRandomCards(rndCards, deckCards)
+		drawRandomCards(rndCards, deckCards, generator)
 
 		for t = 0; t < 5-T; t++ {
 			rndTableCards[t] = rndCards[t]
@@ -353,10 +398,10 @@ func CalcEquityMonteCarlo(playerCards PlayerCards, tableCards []int, nbPlayer in
 	eqty.Win /= float32(nbGame)
 	eqty.Tie /= float32(nbGame)
 
-	return eqty
+	c <- eqty
 }
 
-func drawRandomCards(rndCards []int, deckCards []int) {
+func drawRandomCards(rndCards []int, deckCards []int, generator *rand.Rand) {
 
 	var r, i int
 	var isUsed bool
@@ -365,7 +410,8 @@ func drawRandomCards(rndCards []int, deckCards []int) {
 	c := 0
 
 	for c < R {
-		r = rand.Intn(D)
+		r = generator.Intn(D)
+		// r = rand.Intn(D)
 		isUsed = false
 		for i = 0; i < c; i++ {
 			if rndCards[i] == deckCards[r] {
