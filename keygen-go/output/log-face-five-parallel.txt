@@ -1,0 +1,936 @@
+❯ go run ./keygen.go
+
+ 
+2023/03/05 01:27:18 Start:	 genFiveFaceKeysParallel
+bootstrapping -> k=2: keys=[0 1 0 0 0 0 0 0 0 0 0 0 0]
+nCoRoutine=12
+searchRange=100
+--------START LOOP 
+lanch go rountine 1 tStart=2 tEnd=101 
+lanch go rountine 2 tStart=102 tEnd=201 
+lanch go rountine 3 tStart=202 tEnd=301 
+lanch go rountine 4 tStart=302 tEnd=401 
+lanch go rountine 5 tStart=402 tEnd=501 
+lanch go rountine 6 tStart=502 tEnd=601 
+lanch go rountine 7 tStart=602 tEnd=701 
+lanch go rountine 8 tStart=702 tEnd=801 
+lanch go rountine 9 tStart=802 tEnd=901 
+lanch go rountine 10 tStart=902 tEnd=1001 
+lanch go rountine 11 tStart=1002 tEnd=1101 
+lanch go rountine 12 tStart=1102 tEnd=1201 
+---------AFTER WAIT
+go rountine 1 return 5
+receive go rountine 1 candKey=5
+DEBUG routines=[true false false false false false false false false false false false] test=1 r+1=1
+DEBUG BREAK
+FINAL: nextKey=5
+k=2: keys=[0 1 5 0 0 0 0 0 0 0 0 0 0] - t=0.00 s
+searchRange=100
+--------START LOOP 
+lanch go rountine 1 tStart=6 tEnd=105 
+lanch go rountine 2 tStart=106 tEnd=205 
+lanch go rountine 3 tStart=206 tEnd=305 
+go rountine 7 return 602
+go rountine 4 return 302
+lanch go rountine 4 tStart=306 tEnd=405 
+go rountine 3 return 206
+lanch go rountine 5 tStart=406 tEnd=505 
+lanch go rountine 6 tStart=506 tEnd=605 
+lanch go rountine 7 tStart=606 tEnd=705 
+lanch go rountine 8 tStart=706 tEnd=805 
+lanch go rountine 9 tStart=806 tEnd=905 
+lanch go rountine 10 tStart=906 tEnd=1005 
+lanch go rountine 11 tStart=1006 tEnd=1105 
+lanch go rountine 12 tStart=1106 tEnd=1205 
+go rountine 5 return 402
+---------AFTER WAIT
+receive go rountine 3 candKey=206
+go rountine 1 return 22
+DEBUG routines=[false false true false false false false false false false false false] test=1 r+1=3
+receive go rountine 1 candKey=22
+DEBUG routines=[true false true false false false false false false false false false] test=1 r+1=1
+DEBUG BREAK
+FINAL: nextKey=22
+go rountine 10 return 902
+go rountine 12 return 1102
+go rountine 8 return 702
+go rountine 10 return 906
+k=3: keys=[0 1 5 22 0 0 0 0 0 0 0 0 0] - t=0.00 s
+searchRange=100
+--------START LOOP 
+lanch go rountine 1 tStart=23 tEnd=122 
+lanch go rountine 2 tStart=123 tEnd=222 
+lanch go rountine 3 tStart=223 tEnd=322 
+lanch go rountine 4 tStart=323 tEnd=422 
+go rountine 2 return 102
+lanch go rountine 5 tStart=423 tEnd=522 
+lanch go rountine 6 tStart=523 tEnd=622 
+lanch go rountine 7 tStart=623 tEnd=722 
+lanch go rountine 8 tStart=723 tEnd=822 
+lanch go rountine 9 tStart=823 tEnd=922 
+lanch go rountine 10 tStart=923 tEnd=1022 
+lanch go rountine 11 tStart=1023 tEnd=1122 
+lanch go rountine 12 tStart=1123 tEnd=1222 
+---------AFTER WAIT
+go rountine 2 return 106
+go rountine 11 return 1002
+go rountine 2 return 123
+receive go rountine 2 candKey=123
+DEBUG routines=[false true false false false false false false false false false false] test=1 r+1=2
+go rountine 1 return 94
+receive go rountine 1 candKey=94
+DEBUG routines=[true true false false false false false false false false false false] test=1 r+1=1
+DEBUG BREAK
+FINAL: nextKey=94
+k=4: keys=[0 1 5 22 94 0 0 0 0 0 0 0 0] - t=0.00 s
+searchRange=100
+--------START LOOP 
+lanch go rountine 1 tStart=95 tEnd=194 
+lanch go rountine 2 tStart=195 tEnd=294 
+lanch go rountine 3 tStart=295 tEnd=394 
+lanch go rountine 4 tStart=395 tEnd=494 
+lanch go rountine 5 tStart=495 tEnd=594 
+lanch go rountine 6 tStart=595 tEnd=694 
+lanch go rountine 7 tStart=695 tEnd=794 
+lanch go rountine 8 tStart=795 tEnd=894 
+lanch go rountine 9 tStart=895 tEnd=994 
+lanch go rountine 10 tStart=995 tEnd=1094 
+lanch go rountine 11 tStart=1095 tEnd=1194 
+lanch go rountine 12 tStart=1195 tEnd=1294 
+---------AFTER WAIT
+go rountine 3 return 223
+go rountine 9 return 802
+go rountine 6 return 506
+go rountine 11 return 1006
+go rountine 12 return 1106
+go rountine 9 return 806
+go rountine 7 return 606
+go rountine 3 return 202
+go rountine 6 return 502
+go rountine 8 return 706
+go rountine 4 return 306
+go rountine 5 return 406
+go rountine 4 return 323
+go rountine 5 return 423
+go rountine 12 return 1195
+go rountine 9 return 823
+receive go rountine 12 candKey=1195
+DEBUG routines=[false false false false false false false false false false false true] test=1 r+1=12
+go rountine 11 return 1095
+receive go rountine 11 candKey=1095
+DEBUG routines=[false false false false false false false false false false true true] test=1 r+1=11
+go rountine 8 return 795
+receive go rountine 8 candKey=795
+go rountine 12 return 1123
+DEBUG routines=[false false false false false false false true false false true true] test=1 r+1=8
+go rountine 4 return 399
+receive go rountine 4 candKey=399
+go rountine 11 return 1023
+DEBUG routines=[false false false true false false false true false false true true] test=1 r+1=4
+go rountine 6 return 595
+receive go rountine 6 candKey=595
+DEBUG routines=[false false false true false true false true false false true true] test=2 r+1=6
+go rountine 9 return 895
+receive go rountine 9 candKey=895
+DEBUG routines=[false false false true false true false true true false true true] test=4 r+1=9
+go rountine 8 return 723
+go rountine 7 return 695
+receive go rountine 7 candKey=695
+go rountine 10 return 995
+go rountine 5 return 495
+DEBUG routines=[false false false true false true true true true false true true] test=3 r+1=7
+receive go rountine 10 candKey=995
+DEBUG routines=[false false false true false true true true true true true true] test=6 r+1=10
+receive go rountine 5 candKey=495
+DEBUG routines=[false false false true true true true true true true true true] test=2 r+1=5
+go rountine 10 return 923
+go rountine 7 return 623
+go rountine 6 return 523
+go rountine 3 return 312
+receive go rountine 3 candKey=312
+DEBUG routines=[false false true true true true true true true true true true] test=1 r+1=3
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false true true true true true true true true true true] test=1 r+1=1
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=2 r+1=2
+FINAL: nextKey=312
+k=5: keys=[0 1 5 22 94 312 0 0 0 0 0 0 0] - t=0.00 s
+searchRange=100
+--------START LOOP 
+lanch go rountine 1 tStart=313 tEnd=412 
+lanch go rountine 2 tStart=413 tEnd=512 
+lanch go rountine 3 tStart=513 tEnd=612 
+lanch go rountine 4 tStart=613 tEnd=712 
+lanch go rountine 5 tStart=713 tEnd=812 
+lanch go rountine 6 tStart=813 tEnd=912 
+lanch go rountine 7 tStart=913 tEnd=1012 
+lanch go rountine 8 tStart=1013 tEnd=1112 
+lanch go rountine 9 tStart=1113 tEnd=1212 
+lanch go rountine 10 tStart=1213 tEnd=1312 
+lanch go rountine 11 tStart=1313 tEnd=1412 
+lanch go rountine 12 tStart=1413 tEnd=1512 
+---------AFTER WAIT
+go rountine 10 return 1213
+receive go rountine 10 candKey=1213
+DEBUG routines=[false false false false false false false false false true false false] test=1 r+1=10
+go rountine 12 return 1413
+receive go rountine 12 candKey=1413
+DEBUG routines=[false false false false false false false false false true false true] test=2 r+1=12
+go rountine 11 return 1316
+receive go rountine 11 candKey=1316
+DEBUG routines=[false false false false false false false false false true true true] test=2 r+1=11
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false false false false false false false false true true true] test=1 r+1=1
+go rountine 9 return 1125
+receive go rountine 9 candKey=1125
+DEBUG routines=[true false false false false false false false true true true true] test=2 r+1=9
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true false true false false false false false true true true true] test=2 r+1=3
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true false true true false false false false true true true true] test=3 r+1=4
+go rountine 8 return 1062
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true true true false false false false true true true true] test=2 r+1=2
+receive go rountine 8 candKey=1062
+DEBUG routines=[true true true true false false false true true true true true] test=5 r+1=8
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true true true true true false false true true true true true] test=5 r+1=5
+go rountine 7 return 992
+receive go rountine 7 candKey=992
+DEBUG routines=[true true true true true false true true true true true true] test=6 r+1=7
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=6 r+1=6
+FINAL: nextKey=992
+k=6: keys=[0 1 5 22 94 312 992 0 0 0 0 0 0] - t=0.01 s
+searchRange=100
+--------START LOOP 
+lanch go rountine 1 tStart=993 tEnd=1092 
+lanch go rountine 2 tStart=1093 tEnd=1192 
+lanch go rountine 3 tStart=1193 tEnd=1292 
+lanch go rountine 4 tStart=1293 tEnd=1392 
+lanch go rountine 5 tStart=1393 tEnd=1492 
+lanch go rountine 6 tStart=1493 tEnd=1592 
+lanch go rountine 7 tStart=1593 tEnd=1692 
+lanch go rountine 8 tStart=1693 tEnd=1792 
+lanch go rountine 9 tStart=1793 tEnd=1892 
+lanch go rountine 10 tStart=1893 tEnd=1992 
+lanch go rountine 11 tStart=1993 tEnd=2092 
+lanch go rountine 12 tStart=2093 tEnd=2192 
+---------AFTER WAIT
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false false false false false false false false false false false] test=1 r+1=1
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true false false true false false false false false false false false] test=2 r+1=4
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true false true true false false false false false false false false] test=2 r+1=3
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true true true false false false false false false false false] test=2 r+1=2
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true true false false false false false true false false] test=5 r+1=10
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[true true true true false false true false false true false false] test=5 r+1=7
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true true true false false true false false true true false] test=7 r+1=11
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true true true true true false true false false true true false] test=5 r+1=5
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[true true true true true false true true false true true false] test=7 r+1=8
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true true true false true true true true true false] test=8 r+1=9
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true false] test=6 r+1=6
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=12 r+1=12
+FINAL: no key found -> carry on
+k=7: keys=[0 1 5 22 94 312 992 0 0 0 0 0 0] - t=0.02 s
+searchRange=100
+--------START LOOP 
+lanch go rountine 1 tStart=2193 tEnd=2292 
+lanch go rountine 2 tStart=2293 tEnd=2392 
+lanch go rountine 3 tStart=2393 tEnd=2492 
+lanch go rountine 4 tStart=2493 tEnd=2592 
+lanch go rountine 5 tStart=2593 tEnd=2692 
+lanch go rountine 6 tStart=2693 tEnd=2792 
+lanch go rountine 7 tStart=2793 tEnd=2892 
+lanch go rountine 8 tStart=2893 tEnd=2992 
+lanch go rountine 9 tStart=2993 tEnd=3092 
+lanch go rountine 10 tStart=3093 tEnd=3192 
+lanch go rountine 11 tStart=3193 tEnd=3292 
+lanch go rountine 12 tStart=3293 tEnd=3392 
+---------AFTER WAIT
+go rountine 7 return 2795
+receive go rountine 7 candKey=2795
+DEBUG routines=[false false false false false false true false false false false false] test=1 r+1=7
+go rountine 12 return 3297
+receive go rountine 12 candKey=3297
+DEBUG routines=[false false false false false false true false false false false true] test=2 r+1=12
+go rountine 11 return 3202
+receive go rountine 11 candKey=3202
+DEBUG routines=[false false false false false false true false false false true true] test=2 r+1=11
+go rountine 4 return 2501
+receive go rountine 4 candKey=2501
+DEBUG routines=[false false false true false false true false false false true true] test=1 r+1=4
+go rountine 10 return 3102
+receive go rountine 10 candKey=3102
+DEBUG routines=[false false false true false false true false false true true true] test=3 r+1=10
+go rountine 6 return 2723
+receive go rountine 6 candKey=2723
+DEBUG routines=[false false false true false true true false false true true true] test=2 r+1=6
+go rountine 9 return 3035
+receive go rountine 9 candKey=3035
+DEBUG routines=[false false false true false true true false true true true true] test=4 r+1=9
+go rountine 3 return 2422
+receive go rountine 3 candKey=2422
+DEBUG routines=[false false true true false true true false true true true true] test=1 r+1=3
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false true true false true true false true true true true] test=1 r+1=1
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true true true false true true false true true true true] test=2 r+1=2
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[true true true true false true true true true true true true] test=7 r+1=8
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=5 r+1=5
+FINAL: nextKey=2422
+k=7: keys=[0 1 5 22 94 312 992 2422 0 0 0 0 0] - t=0.04 s
+searchRange=100
+--------START LOOP 
+lanch go rountine 1 tStart=2423 tEnd=2522 
+lanch go rountine 2 tStart=2523 tEnd=2622 
+lanch go rountine 3 tStart=2623 tEnd=2722 
+lanch go rountine 4 tStart=2723 tEnd=2822 
+lanch go rountine 5 tStart=2823 tEnd=2922 
+lanch go rountine 6 tStart=2923 tEnd=3022 
+lanch go rountine 7 tStart=3023 tEnd=3122 
+lanch go rountine 8 tStart=3123 tEnd=3222 
+lanch go rountine 9 tStart=3223 tEnd=3322 
+lanch go rountine 10 tStart=3323 tEnd=3422 
+lanch go rountine 11 tStart=3423 tEnd=3522 
+lanch go rountine 12 tStart=3523 tEnd=3622 
+---------AFTER WAIT
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false false false false false false false false false false false] test=1 r+1=1
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true false true false false false false false false false false false] test=2 r+1=3
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true false true true false false false false false false false false] test=3 r+1=4
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true true true false false false false false false false false] test=2 r+1=2
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true true false false false false false true false false] test=5 r+1=10
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[true true true true false false true false false true false false] test=5 r+1=7
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true true true false true true false false true false false] test=5 r+1=6
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true true true true true true true false false true false false] test=5 r+1=5
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true true true true true true false false true true false] test=9 r+1=11
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[true true true true true true true true false true true false] test=8 r+1=8
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true false] test=9 r+1=9
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=12 r+1=12
+FINAL: no key found -> carry on
+k=8: keys=[0 1 5 22 94 312 992 2422 0 0 0 0 0] - t=0.06 s
+searchRange=100
+--------START LOOP 
+lanch go rountine 1 tStart=3623 tEnd=3722 
+lanch go rountine 2 tStart=3723 tEnd=3822 
+lanch go rountine 3 tStart=3823 tEnd=3922 
+lanch go rountine 4 tStart=3923 tEnd=4022 
+lanch go rountine 5 tStart=4023 tEnd=4122 
+lanch go rountine 6 tStart=4123 tEnd=4222 
+lanch go rountine 7 tStart=4223 tEnd=4322 
+lanch go rountine 8 tStart=4323 tEnd=4422 
+lanch go rountine 9 tStart=4423 tEnd=4522 
+lanch go rountine 10 tStart=4523 tEnd=4622 
+lanch go rountine 11 tStart=4623 tEnd=4722 
+lanch go rountine 12 tStart=4723 tEnd=4822 
+---------AFTER WAIT
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[false false false false false false false false false false false true] test=1 r+1=12
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[false true false false false false false false false false false true] test=1 r+1=2
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true true false false false false false false false false false true] test=1 r+1=1
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[true true false false false false false true false false false true] test=3 r+1=8
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true true true false false false false true false false false true] test=3 r+1=3
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true false false false false true true false false true] test=5 r+1=9
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true true false false false false true true false true true] test=6 r+1=11
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[true true true false false false true true true false true true] test=4 r+1=7
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true false false false true true true true true true] test=7 r+1=10
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true true true true false false true true true true true true] test=4 r+1=4
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true true true false true true true true true true true] test=5 r+1=6
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=5 r+1=5
+FINAL: no key found -> carry on
+k=8: keys=[0 1 5 22 94 312 992 2422 0 0 0 0 0] - t=0.09 s
+searchRange=120
+--------START LOOP 
+lanch go rountine 1 tStart=4823 tEnd=4942 
+lanch go rountine 2 tStart=4943 tEnd=5062 
+lanch go rountine 3 tStart=5063 tEnd=5182 
+lanch go rountine 4 tStart=5183 tEnd=5302 
+lanch go rountine 5 tStart=5303 tEnd=5422 
+lanch go rountine 6 tStart=5423 tEnd=5542 
+lanch go rountine 7 tStart=5543 tEnd=5662 
+lanch go rountine 8 tStart=5663 tEnd=5782 
+lanch go rountine 9 tStart=5783 tEnd=5902 
+lanch go rountine 10 tStart=5903 tEnd=6022 
+lanch go rountine 11 tStart=6023 tEnd=6142 
+lanch go rountine 12 tStart=6143 tEnd=6262 
+---------AFTER WAIT
+go rountine 11 return 6025
+receive go rountine 11 candKey=6025
+DEBUG routines=[false false false false false false false false false false true false] test=1 r+1=11
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false false false false false false false false false true false] test=1 r+1=1
+go rountine 8 return 5696
+receive go rountine 8 candKey=5696
+DEBUG routines=[true false false false false false false true false false true false] test=2 r+1=8
+go rountine 12 return 6191
+receive go rountine 12 candKey=6191
+DEBUG routines=[true false false false false false false true false false true true] test=4 r+1=12
+go rountine 10 return 5969
+receive go rountine 10 candKey=5969
+DEBUG routines=[true false false false false false false true false true true true] test=3 r+1=10
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true false false false true false false true false true true true] test=2 r+1=5
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true false true false true false false true false true true true] test=2 r+1=3
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true true false true false false true false true true true] test=2 r+1=2
+go rountine 7 return 5624
+receive go rountine 7 candKey=5624
+DEBUG routines=[true true true false true false true true false true true true] test=5 r+1=7
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true true false true true true true false true true true] test=5 r+1=6
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true false true true true true true true true true] test=8 r+1=9
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=4 r+1=4
+FINAL: nextKey=5624
+k=8: keys=[0 1 5 22 94 312 992 2422 5624 0 0 0 0] - t=0.13 s
+searchRange=140
+--------START LOOP 
+lanch go rountine 1 tStart=5625 tEnd=5764 
+lanch go rountine 2 tStart=5765 tEnd=5904 
+lanch go rountine 3 tStart=5905 tEnd=6044 
+lanch go rountine 4 tStart=6045 tEnd=6184 
+lanch go rountine 5 tStart=6185 tEnd=6324 
+lanch go rountine 6 tStart=6325 tEnd=6464 
+lanch go rountine 7 tStart=6465 tEnd=6604 
+lanch go rountine 8 tStart=6605 tEnd=6744 
+lanch go rountine 9 tStart=6745 tEnd=6884 
+lanch go rountine 10 tStart=6885 tEnd=7024 
+lanch go rountine 11 tStart=7025 tEnd=7164 
+lanch go rountine 12 tStart=7165 tEnd=7304 
+---------AFTER WAIT
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false false false false false false false false false false false] test=1 r+1=1
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true false true false false false false false false false false false] test=2 r+1=3
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true false true false true false false false false false false false] test=3 r+1=5
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true true false true false false false false false false false] test=2 r+1=2
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[true true true false true false false true false false false false] test=5 r+1=8
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true true true true true false false true false false false false] test=4 r+1=4
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true true true true false false true false false true false] test=7 r+1=11
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true true true false false true false true true false] test=7 r+1=10
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[true true true true true false true true false true true false] test=6 r+1=7
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true true true true true true true false true true false] test=6 r+1=6
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[true true true true true true true true false true true true] test=11 r+1=12
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=9 r+1=9
+FINAL: no key found -> carry on
+k=9: keys=[0 1 5 22 94 312 992 2422 5624 0 0 0 0] - t=0.18 s
+searchRange=182
+--------START LOOP 
+lanch go rountine 1 tStart=7305 tEnd=7486 
+lanch go rountine 2 tStart=7487 tEnd=7668 
+lanch go rountine 3 tStart=7669 tEnd=7850 
+lanch go rountine 4 tStart=7851 tEnd=8032 
+lanch go rountine 5 tStart=8033 tEnd=8214 
+lanch go rountine 6 tStart=8215 tEnd=8396 
+lanch go rountine 7 tStart=8397 tEnd=8578 
+lanch go rountine 8 tStart=8579 tEnd=8760 
+lanch go rountine 9 tStart=8761 tEnd=8942 
+lanch go rountine 10 tStart=8943 tEnd=9124 
+lanch go rountine 11 tStart=9125 tEnd=9306 
+lanch go rountine 12 tStart=9307 tEnd=9488 
+---------AFTER WAIT
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[false false false true false false false false false false false false] test=1 r+1=4
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[false false false true true false false false false false false false] test=2 r+1=5
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[false false true true true false false false false false false false] test=1 r+1=3
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[false true true true true false false false false false false false] test=1 r+1=2
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[false true true true true true false false false false false false] test=5 r+1=6
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[false true true true true true false false true false false false] test=6 r+1=9
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true true true true true true false false true false false false] test=1 r+1=1
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true true true true false false true true false false] test=8 r+1=10
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[true true true true true true false true true true false false] test=7 r+1=8
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true false false] test=7 r+1=7
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true false true] test=11 r+1=12
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=11 r+1=11
+FINAL: no key found -> carry on
+k=9: keys=[0 1 5 22 94 312 992 2422 5624 0 0 0 0] - t=0.30 s
+searchRange=237
+--------START LOOP 
+lanch go rountine 1 tStart=9489 tEnd=9725 
+lanch go rountine 2 tStart=9726 tEnd=9962 
+lanch go rountine 3 tStart=9963 tEnd=10199 
+lanch go rountine 4 tStart=10200 tEnd=10436 
+lanch go rountine 5 tStart=10437 tEnd=10673 
+lanch go rountine 6 tStart=10674 tEnd=10910 
+lanch go rountine 7 tStart=10911 tEnd=11147 
+lanch go rountine 8 tStart=11148 tEnd=11384 
+lanch go rountine 9 tStart=11385 tEnd=11621 
+lanch go rountine 10 tStart=11622 tEnd=11858 
+lanch go rountine 11 tStart=11859 tEnd=12095 
+lanch go rountine 12 tStart=12096 tEnd=12332 
+---------AFTER WAIT
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[false false false false false false false true false false false false] test=1 r+1=8
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[false false false false false false true true false false false false] test=1 r+1=7
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[false false false false true false true true false false false false] test=1 r+1=5
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[false false false true true false true true false false false false] test=1 r+1=4
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[false false false true true false true true true false false false] test=5 r+1=9
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[false false false true true false true true true false false true] test=6 r+1=12
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[false false true true true false true true true false false true] test=1 r+1=3
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[false false true true true true true true true false false true] test=4 r+1=6
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[false true true true true true true true true false false true] test=1 r+1=2
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true true true true true true true true true false false true] test=1 r+1=1
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true false true] test=10 r+1=10
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=11 r+1=11
+FINAL: no key found -> carry on
+k=9: keys=[0 1 5 22 94 312 992 2422 5624 0 0 0 0] - t=0.49 s
+searchRange=308
+--------START LOOP 
+lanch go rountine 1 tStart=12333 tEnd=12640 
+lanch go rountine 2 tStart=12641 tEnd=12948 
+lanch go rountine 3 tStart=12949 tEnd=13256 
+lanch go rountine 4 tStart=13257 tEnd=13564 
+lanch go rountine 5 tStart=13565 tEnd=13872 
+lanch go rountine 6 tStart=13873 tEnd=14180 
+lanch go rountine 7 tStart=14181 tEnd=14488 
+lanch go rountine 8 tStart=14489 tEnd=14796 
+lanch go rountine 9 tStart=14797 tEnd=15104 
+lanch go rountine 10 tStart=15105 tEnd=15412 
+lanch go rountine 11 tStart=15413 tEnd=15720 
+lanch go rountine 12 tStart=15721 tEnd=16028 
+---------AFTER WAIT
+go rountine 12 return 15724
+receive go rountine 12 candKey=15724
+DEBUG routines=[false false false false false false false false false false false true] test=1 r+1=12
+go rountine 9 return 14802
+receive go rountine 9 candKey=14802
+DEBUG routines=[false false false false false false false false true false false true] test=1 r+1=9
+go rountine 11 return 15426
+receive go rountine 11 candKey=15426
+DEBUG routines=[false false false false false false false false true false true true] test=2 r+1=11
+go rountine 8 return 14508
+receive go rountine 8 candKey=14508
+DEBUG routines=[false false false false false false false true true false true true] test=1 r+1=8
+go rountine 6 return 13926
+receive go rountine 6 candKey=13926
+DEBUG routines=[false false false false false true false true true false true true] test=1 r+1=6
+go rountine 5 return 13612
+receive go rountine 5 candKey=13612
+DEBUG routines=[false false false false true true false true true false true true] test=1 r+1=5
+go rountine 10 return 15138
+receive go rountine 10 candKey=15138
+DEBUG routines=[false false false false true true false true true true true true] test=5 r+1=10
+go rountine 3 return 13031
+receive go rountine 3 candKey=13031
+DEBUG routines=[false false true false true true false true true true true true] test=1 r+1=3
+go rountine 7 return 14281
+receive go rountine 7 candKey=14281
+DEBUG routines=[false false true false true true true true true true true true] test=4 r+1=7
+go rountine 4 return 13417
+receive go rountine 4 candKey=13417
+DEBUG routines=[false false true true true true true true true true true true] test=2 r+1=4
+go rountine 1 return 12522
+receive go rountine 1 candKey=12522
+DEBUG routines=[true false true true true true true true true true true true] test=1 r+1=1
+DEBUG BREAK
+FINAL: nextKey=12522
+k=9: keys=[0 1 5 22 94 312 992 2422 5624 12522 0 0 0] - t=0.61 s
+searchRange=313
+--------START LOOP 
+lanch go rountine 1 tStart=12523 tEnd=12835 
+lanch go rountine 2 tStart=12836 tEnd=13148 
+lanch go rountine 3 tStart=13149 tEnd=13461 
+lanch go rountine 4 tStart=13462 tEnd=13774 
+lanch go rountine 5 tStart=13775 tEnd=14087 
+lanch go rountine 6 tStart=14088 tEnd=14400 
+lanch go rountine 7 tStart=14401 tEnd=14713 
+lanch go rountine 8 tStart=14714 tEnd=15026 
+lanch go rountine 9 tStart=15027 tEnd=15339 
+lanch go rountine 10 tStart=15340 tEnd=15652 
+lanch go rountine 11 tStart=15653 tEnd=15965 
+lanch go rountine 12 tStart=15966 tEnd=16278 
+---------AFTER WAIT
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false false false false false false false false false false false] test=1 r+1=1
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true false false true false false false false false false false false] test=2 r+1=4
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true false true false false false false false false false false] test=2 r+1=2
+go rountine 2 return 12944
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[true true false true false false false true false false false false] test=4 r+1=8
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[true true false true false false true true false false false false] test=4 r+1=7
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true true true true false false true true false false false false] test=3 r+1=3
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true true true true true false true true false false false false] test=5 r+1=5
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true true true true false true true false false true false] test=8 r+1=11
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true true true false true true true false true false] test=8 r+1=9
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true true true false true true true true true false] test=9 r+1=10
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[true true true true true false true true true true true true] test=11 r+1=12
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=6 r+1=6
+FINAL: no key found -> carry on
+k=10: keys=[0 1 5 22 94 312 992 2422 5624 12522 0 0 0] - t=0.87 s
+searchRange=406
+--------START LOOP 
+lanch go rountine 1 tStart=16279 tEnd=16684 
+lanch go rountine 2 tStart=16685 tEnd=17090 
+lanch go rountine 3 tStart=17091 tEnd=17496 
+lanch go rountine 4 tStart=17497 tEnd=17902 
+lanch go rountine 5 tStart=17903 tEnd=18308 
+lanch go rountine 6 tStart=18309 tEnd=18714 
+lanch go rountine 7 tStart=18715 tEnd=19120 
+lanch go rountine 8 tStart=19121 tEnd=19526 
+lanch go rountine 9 tStart=19527 tEnd=19932 
+lanch go rountine 10 tStart=19933 tEnd=20338 
+lanch go rountine 11 tStart=20339 tEnd=20744 
+lanch go rountine 12 tStart=20745 tEnd=21150 
+---------AFTER WAIT
+go rountine 10 return 19998
+receive go rountine 10 candKey=19998
+DEBUG routines=[false false false false false false false false false true false false] test=1 r+1=10
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[false false false false true false false false false true false false] test=1 r+1=5
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[false false true false true false false false false true false false] test=1 r+1=3
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[false true true false true false false false false true false false] test=1 r+1=2
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[false true true false true false false true false true false false] test=4 r+1=8
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[false true true true true false false true false true false false] test=3 r+1=4
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[false true true true true true false true false true false false] test=5 r+1=6
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[false true true true true true false true false true true false] test=8 r+1=11
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true true true true true true false true false true true false] test=1 r+1=1
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[true true true true true true true true false true true false] test=7 r+1=7
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true false] test=9 r+1=9
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=12 r+1=12
+FINAL: nextKey=19998
+k=10: keys=[0 1 5 22 94 312 992 2422 5624 12522 19998 0 0] - t=1.48 s
+searchRange=499
+--------START LOOP 
+lanch go rountine 1 tStart=19999 tEnd=20497 
+lanch go rountine 2 tStart=20498 tEnd=20996 
+lanch go rountine 3 tStart=20997 tEnd=21495 
+lanch go rountine 4 tStart=21496 tEnd=21994 
+lanch go rountine 5 tStart=21995 tEnd=22493 
+lanch go rountine 6 tStart=22494 tEnd=22992 
+lanch go rountine 7 tStart=22993 tEnd=23491 
+lanch go rountine 8 tStart=23492 tEnd=23990 
+lanch go rountine 9 tStart=23991 tEnd=24489 
+lanch go rountine 10 tStart=24490 tEnd=24988 
+lanch go rountine 11 tStart=24989 tEnd=25487 
+lanch go rountine 12 tStart=25488 tEnd=25986 
+---------AFTER WAIT
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false false false false false false false false false false false] test=1 r+1=1
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true false false false false false false false false false false] test=2 r+1=2
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true true false false true false false false false false false false] test=3 r+1=5
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true false false true false false false false false true false] test=4 r+1=11
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[true true false false true false false false false false true true] test=5 r+1=12
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true false false true true false false false false true true] test=4 r+1=6
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[true true false false true true true false false false true true] test=5 r+1=7
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true true true false true true true false false false true true] test=3 r+1=3
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true false true true true false false true true true] test=7 r+1=10
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true true true true true true true false false true true true] test=4 r+1=4
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true true true true true false true true true true] test=8 r+1=9
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=8 r+1=8
+FINAL: no key found -> carry on
+k=11: keys=[0 1 5 22 94 312 992 2422 5624 12522 19998 0 0] - t=2.09 s
+searchRange=649
+--------START LOOP 
+lanch go rountine 1 tStart=25987 tEnd=26635 
+lanch go rountine 2 tStart=26636 tEnd=27284 
+lanch go rountine 3 tStart=27285 tEnd=27933 
+lanch go rountine 4 tStart=27934 tEnd=28582 
+lanch go rountine 5 tStart=28583 tEnd=29231 
+lanch go rountine 6 tStart=29232 tEnd=29880 
+lanch go rountine 7 tStart=29881 tEnd=30529 
+lanch go rountine 8 tStart=30530 tEnd=31178 
+lanch go rountine 9 tStart=31179 tEnd=31827 
+lanch go rountine 10 tStart=31828 tEnd=32476 
+lanch go rountine 11 tStart=32477 tEnd=33125 
+lanch go rountine 12 tStart=33126 tEnd=33774 
+---------AFTER WAIT
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[false true false false false false false false false false false false] test=1 r+1=2
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true true false false false false false false false false false false] test=1 r+1=1
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true true true false false false false false false false false false] test=3 r+1=3
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[true true true false false false true false false false false false] test=4 r+1=7
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true true false false false true false false false true false] test=5 r+1=11
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true false false false true false false true true false] test=5 r+1=10
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true true true true false false true false false true true false] test=4 r+1=4
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true true false false true false true true true false] test=6 r+1=9
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[true true true true false false true true true true true false] test=6 r+1=8
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true true true false true true true true true true false] test=5 r+1=6
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[true true true true false true true true true true true true] test=11 r+1=12
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=5 r+1=5
+FINAL: no key found -> carry on
+k=11: keys=[0 1 5 22 94 312 992 2422 5624 12522 19998 0 0] - t=3.40 s
+searchRange=844
+--------START LOOP 
+lanch go rountine 1 tStart=33775 tEnd=34618 
+lanch go rountine 2 tStart=34619 tEnd=35462 
+lanch go rountine 3 tStart=35463 tEnd=36306 
+lanch go rountine 4 tStart=36307 tEnd=37150 
+lanch go rountine 5 tStart=37151 tEnd=37994 
+lanch go rountine 6 tStart=37995 tEnd=38838 
+lanch go rountine 7 tStart=38839 tEnd=39682 
+lanch go rountine 8 tStart=39683 tEnd=40526 
+lanch go rountine 9 tStart=40527 tEnd=41370 
+lanch go rountine 10 tStart=41371 tEnd=42214 
+lanch go rountine 11 tStart=42215 tEnd=43058 
+lanch go rountine 12 tStart=43059 tEnd=43902 
+---------AFTER WAIT
+go rountine 12 return 43258
+receive go rountine 12 candKey=43258
+DEBUG routines=[false false false false false false false false false false false true] test=1 r+1=12
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[false false false false true false false false false false false true] test=1 r+1=5
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[false false false false true false false true false false false true] test=2 r+1=8
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[false false false false true false true true false false false true] test=2 r+1=7
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[false true false false true false true true false false false true] test=1 r+1=2
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true true false false true false true true false false false true] test=1 r+1=1
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true false false true true true true false false false true] test=4 r+1=6
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true true true false true true true true false false false true] test=3 r+1=3
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true true true true true true true true false false false true] test=4 r+1=4
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true true true true true true true false false true] test=9 r+1=9
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true true true true true true true true false true true] test=10 r+1=11
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=10 r+1=10
+FINAL: nextKey=43258
+k=11: keys=[0 1 5 22 94 312 992 2422 5624 12522 19998 43258 0] - t=5.86 s
+searchRange=1081
+--------START LOOP 
+lanch go rountine 1 tStart=43259 tEnd=44339 
+lanch go rountine 2 tStart=44340 tEnd=45420 
+lanch go rountine 3 tStart=45421 tEnd=46501 
+lanch go rountine 4 tStart=46502 tEnd=47582 
+lanch go rountine 5 tStart=47583 tEnd=48663 
+lanch go rountine 6 tStart=48664 tEnd=49744 
+lanch go rountine 7 tStart=49745 tEnd=50825 
+lanch go rountine 8 tStart=50826 tEnd=51906 
+lanch go rountine 9 tStart=51907 tEnd=52987 
+lanch go rountine 10 tStart=52988 tEnd=54068 
+lanch go rountine 11 tStart=54069 tEnd=55149 
+lanch go rountine 12 tStart=55150 tEnd=56230 
+---------AFTER WAIT
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false false false false false false false false false false false] test=1 r+1=1
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true false false false false false false false false false false] test=2 r+1=2
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true true true false false false false false false false false false] test=3 r+1=3
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true true true false true false false false false false false false] test=4 r+1=5
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[true true true false true false false false false false false true] test=5 r+1=12
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true true false true true false false false false false true] test=5 r+1=6
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[true true true false true true true false false false false true] test=6 r+1=7
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true true true true true true true false false false false true] test=4 r+1=4
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true true true true true true false false false true true] test=8 r+1=11
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true true true true true false true false true true] test=8 r+1=9
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true true true true true false true true true true] test=9 r+1=10
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=8 r+1=8
+FINAL: no key found -> carry on
+k=12: keys=[0 1 5 22 94 312 992 2422 5624 12522 19998 43258 0] - t=8.94 s
+searchRange=1405
+--------START LOOP 
+lanch go rountine 1 tStart=56231 tEnd=57635 
+lanch go rountine 2 tStart=57636 tEnd=59040 
+lanch go rountine 3 tStart=59041 tEnd=60445 
+lanch go rountine 4 tStart=60446 tEnd=61850 
+lanch go rountine 5 tStart=61851 tEnd=63255 
+lanch go rountine 6 tStart=63256 tEnd=64660 
+lanch go rountine 7 tStart=64661 tEnd=66065 
+lanch go rountine 8 tStart=66066 tEnd=67470 
+lanch go rountine 9 tStart=67471 tEnd=68875 
+lanch go rountine 10 tStart=68876 tEnd=70280 
+lanch go rountine 11 tStart=70281 tEnd=71685 
+lanch go rountine 12 tStart=71686 tEnd=73090 
+---------AFTER WAIT
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[false false false false true false false false false false false false] test=1 r+1=5
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false false false true false false false false false false false] test=1 r+1=1
+receive go rountine 4 candKey=1000000000
+DEBUG routines=[true false false true true false false false false false false false] test=2 r+1=4
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true false false true true true false false false false false false] test=4 r+1=6
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true false true true true false false false false false false] test=2 r+1=2
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[true true false true true true false true false false false false] test=6 r+1=8
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true true true true true true false true false false false false] test=3 r+1=3
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true true true true false true true false false false] test=8 r+1=9
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[true true true true true true true true true false false false] test=7 r+1=7
+receive go rountine 10 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true false false] test=10 r+1=10
+receive go rountine 11 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true false] test=11 r+1=11
+receive go rountine 12 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=12 r+1=12
+FINAL: no key found -> carry on
+k=12: keys=[0 1 5 22 94 312 992 2422 5624 12522 19998 43258 0] - t=16.89 s
+searchRange=1827
+--------START LOOP 
+lanch go rountine 1 tStart=73091 tEnd=74917 
+lanch go rountine 2 tStart=74918 tEnd=76744 
+lanch go rountine 3 tStart=76745 tEnd=78571 
+lanch go rountine 4 tStart=78572 tEnd=80398 
+lanch go rountine 5 tStart=80399 tEnd=82225 
+lanch go rountine 6 tStart=82226 tEnd=84052 
+lanch go rountine 7 tStart=84053 tEnd=85879 
+lanch go rountine 8 tStart=85880 tEnd=87706 
+lanch go rountine 9 tStart=87707 tEnd=89533 
+lanch go rountine 10 tStart=89534 tEnd=91360 
+lanch go rountine 11 tStart=91361 tEnd=93187 
+lanch go rountine 12 tStart=93188 tEnd=95014 
+---------AFTER WAIT
+go rountine 10 return 89605
+receive go rountine 10 candKey=89605
+DEBUG routines=[false false false false false false false false false true false false] test=1 r+1=10
+go rountine 12 return 93271
+receive go rountine 12 candKey=93271
+DEBUG routines=[false false false false false false false false false true false true] test=2 r+1=12
+go rountine 4 return 79415
+receive go rountine 4 candKey=79415
+DEBUG routines=[false false false true false false false false false true false true] test=1 r+1=4
+go rountine 11 return 92275
+receive go rountine 11 candKey=92275
+DEBUG routines=[false false false true false false false false false true true true] test=3 r+1=11
+receive go rountine 8 candKey=1000000000
+DEBUG routines=[false false false true false false false true false true true true] test=2 r+1=8
+receive go rountine 7 candKey=1000000000
+DEBUG routines=[false false false true false false true true false true true true] test=2 r+1=7
+receive go rountine 1 candKey=1000000000
+DEBUG routines=[true false false true false false true true false true true true] test=1 r+1=1
+receive go rountine 2 candKey=1000000000
+DEBUG routines=[true true false true false false true true false true true true] test=2 r+1=2
+receive go rountine 6 candKey=1000000000
+DEBUG routines=[true true false true false true true true false true true true] test=4 r+1=6
+receive go rountine 5 candKey=1000000000
+DEBUG routines=[true true false true true true true true false true true true] test=4 r+1=5
+receive go rountine 3 candKey=1000000000
+DEBUG routines=[true true true true true true true true false true true true] test=3 r+1=3
+receive go rountine 9 candKey=1000000000
+DEBUG routines=[true true true true true true true true true true true true] test=9 r+1=9
+FINAL: nextKey=79415
+k=12: keys=[0 1 5 22 94 312 992 2422 5624 12522 19998 43258 79415] - t=27.94 s
+searchRange=1985
+saved solutions to /ouput/five-face-keys-parallel.csv
+done
+2023/03/05 01:27:46 End:	 genFiveFaceKeysParallel genFiveFaceKeysParallel took 27.940992837s
+
