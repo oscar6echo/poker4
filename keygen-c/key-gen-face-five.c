@@ -53,6 +53,22 @@ int main()
                 }
             }
 
+            // i = 0;
+            // validKey = 1;
+            // while (validKey ==1 && i < c - 1)
+            // {
+            //     j = i + 1;
+            //     while (validKey == 1 && j < c)
+            //     {
+            //         if (sums[i] == sums[j])
+            //         {
+            //             validKey = 0;
+            //         }
+            //         j++;
+            //     }
+            //     i++;
+            // } 
+
             i = 0;
             do
             {
