@@ -1,7 +1,6 @@
 package server
 
 import (
-	"fmt"
 	"net/http"
 	"poker/poker"
 
@@ -39,24 +38,24 @@ type calcMonteCarloBody struct {
 	NbGame   int               `json:"nb_game"`
 }
 
-//	@Tags		Status
-//	@Summary	server status
-//	@Produce	plain
-//	@Router		/healthz [get]
-//	@Success	200
-//	@Failure	500
+// @Tags		Status
+// @Summary	server status
+// @Produce	plain
+// @Router		/healthz [get]
+// @Success	200
+// @Failure	500
 func healthzHandler(c *gin.Context) {
 	c.JSON(200, "Ok")
 }
 
-//	@Tags		Hand
-//	@Summary	evaluate 5-card hand
-//	@Accept		json
-//	@Produce	json
-//	@Param		cards	body	rankFiveBody	true	"5-card hands"
-//	@Router		/rank-five [post]
-//	@Success	200	{object}	[]int	"ranks"
-//	@Failure	401	"invalid rank-five input"
+// @Tags		Hand
+// @Summary	evaluate 5-card hand
+// @Accept		json
+// @Produce	json
+// @Param		cards	body	rankFiveBody	true	"5-card hands"
+// @Router		/rank-five [post]
+// @Success	200	{object}	[]int	"ranks"
+// @Failure	401	"invalid rank-five input"
 func rankFiveHandler(c *gin.Context) {
 	var body rankFiveBody
 
@@ -76,14 +75,14 @@ func rankFiveHandler(c *gin.Context) {
 	c.JSON(200, ranks)
 }
 
-//	@Tags		Hand
-//	@Summary	evaluate 7-card hand
-//	@Accept		json
-//	@Produce	json
-//	@Param		cards	body	rankSevenBody	true	"5-card hands"
-//	@Router		/rank-seven [post]
-//	@Success	200	{object}	[]int	"ranks"
-//	@Failure	401	"invalid rank-seven input"
+// @Tags		Hand
+// @Summary	evaluate 7-card hand
+// @Accept		json
+// @Produce	json
+// @Param		cards	body	rankSevenBody	true	"5-card hands"
+// @Router		/rank-seven [post]
+// @Success	200	{object}	[]int	"ranks"
+// @Failure	401	"invalid rank-seven input"
 func rankSevenHandler(c *gin.Context) {
 	var body rankSevenBody
 
@@ -103,16 +102,16 @@ func rankSevenHandler(c *gin.Context) {
 	c.JSON(200, ranks)
 }
 
-//	@Tags		Calculate
-//	@Summary	exhaustive calculator
-//	@Accept		json
-//	@Produce	json
-//	@Param		cards	body	calcBody	true	"game cards: table and players"
-//	@Router		/calc [post]
-//	@Success	200	{object}	[]poker.handEquity	"players hands equity"
-//	@Failure	401	"invalid calc input"
-//	@Failure	422	"nb_player must be between 2 and 10"
-//	@Failure	423	"len(table) must be 0, 3, 4, 5"
+// @Tags		Calculate
+// @Summary	exhaustive calculator
+// @Accept		json
+// @Produce	json
+// @Param		cards	body	calcBody	true	"game cards: table and players"
+// @Router		/calc [post]
+// @Success	200	{object}	[]poker.handEquity	"players hands equity"
+// @Failure	401	"invalid calc input"
+// @Failure	422	"nb_player must be between 2 and 10"
+// @Failure	423	"len(table) must be 0, 3, 4, 5"
 func calcHandler(c *gin.Context) {
 	var body calcBody
 
@@ -123,13 +122,13 @@ func calcHandler(c *gin.Context) {
 	CustomLog("/calc", "body", body)
 
 	P := len(body.Players)
-	fmt.Println("P", P)
+	// fmt.Println("P", P)
 	if P < 2 || P > 10 {
 		c.JSON(422, gin.H{"error": "nb_player must be between 2 and 10"})
 		return
 	}
 	T := len(body.Table)
-	fmt.Println("T", T)
+	// fmt.Println("T", T)
 	if T != 0 && T != 3 && T != 4 && T != 5 {
 		c.JSON(423, gin.H{"error": "len(table) must be 0, 3, 4, 5"})
 		return
@@ -140,17 +139,17 @@ func calcHandler(c *gin.Context) {
 	c.JSON(200, eqty)
 }
 
-//	@Tags		Calculate
-//	@Summary	monte carlo calculator
-//	@Accept		json
-//	@Produce	json
-//	@Param		cards	body	calcMonteCarloBody	true	"game cards: table and players"
-//	@Router		/calc-mc [post]
-//	@Success	200	{object}	[]poker.handEquity	"players hands equity"
-//	@Failure	401	"invalid calc-mc input"
-//	@Failure	422	"nb_player must be between 2 and 10"
-//	@Failure	423	"len(table) must be 0, 3, 4, 5"
-//	@Failure	423	"nb_game must be set"
+// @Tags		Calculate
+// @Summary	monte carlo calculator
+// @Accept		json
+// @Produce	json
+// @Param		cards	body	calcMonteCarloBody	true	"game cards: table and players"
+// @Router		/calc-mc [post]
+// @Success	200	{object}	[]poker.handEquity	"players hands equity"
+// @Failure	401	"invalid calc-mc input"
+// @Failure	422	"nb_player must be between 2 and 10"
+// @Failure	423	"len(table) must be 0, 3, 4, 5"
+// @Failure	423	"nb_game must be set"
 func calcMonteCarloHandler(c *gin.Context) {
 	var body calcMonteCarloBody
 
@@ -184,12 +183,12 @@ func calcMonteCarloHandler(c *gin.Context) {
 	c.JSON(200, eqty)
 }
 
-//	@Tags		Static
-//	@Summary	static data
-//	@Produce	json
-//	@Router		/config [get]
-//	@Success	200	{object}	configData	"poker API static data"
-//	@Failure	500
+// @Tags		Static
+// @Summary	static data
+// @Produce	json
+// @Router		/config [get]
+// @Success	200	{object}	configData	"poker API static data"
+// @Failure	500
 func configHandler(c *gin.Context) {
 	var config = configData{
 		FACE:    poker.FACE,
