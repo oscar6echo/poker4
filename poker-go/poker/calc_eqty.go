@@ -70,7 +70,7 @@ func CalcEquity(playerCards [][2]int, tableCards []int) []handEquity {
 
 	// zero table cards
 	if T == 0 {
-		for c1 = 0; c1 < D-2*P-T; c1++ {
+		for c1 = 0; c1 < D; c1++ {
 			for c2 = 0; c2 < c1; c2++ {
 				for c3 = 0; c3 < c2; c3++ {
 					for c4 = 0; c4 < c3; c4++ {
@@ -98,7 +98,7 @@ func CalcEquity(playerCards [][2]int, tableCards []int) []handEquity {
 
 	// 3 table cards
 	if T == 3 {
-		for c1 = 0; c1 < D-2*P-T; c1++ {
+		for c1 = 0; c1 < D; c1++ {
 			for c2 = 0; c2 < c1; c2++ {
 				for p = 0; p < P; p++ {
 					cards = [7]int{
@@ -120,7 +120,7 @@ func CalcEquity(playerCards [][2]int, tableCards []int) []handEquity {
 
 	// 4 table cards
 	if T == 4 {
-		for c1 = 0; c1 < D-2*P-T; c1++ {
+		for c1 = 0; c1 < D; c1++ {
 			for p = 0; p < P; p++ {
 				cards = [7]int{
 					playerCards[p][0],
@@ -140,7 +140,6 @@ func CalcEquity(playerCards [][2]int, tableCards []int) []handEquity {
 
 	// 5 table cards
 	if T == 5 {
-
 		for p = 0; p < P; p++ {
 			cards = [7]int{
 				playerCards[p][0],
@@ -320,7 +319,6 @@ func CalcEquityMonteCarloOneCoRoutine(playerCards PlayerCards, tableCards []int,
 		r = 5 - T
 
 		for p = 0; p < nbPlayer; p++ {
-			// fmt.Println(">", p, r)
 			if p == 0 {
 				c1 = playerCards[0][0]
 				c2 = playerCards[0][1]
