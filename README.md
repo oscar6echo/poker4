@@ -120,7 +120,7 @@ curl -X POST  -d '{"cards":[[8,29,4,11,32,18,19],[9,30,5,12,33,19,20]]}' https:/
 # [4231,5855]%
 
 curl -X POST  -d '{"players":[[8,29], [4,11]],"table":[]}' https://localhost:5000/calc
-# [{"Win":0.64821345,"Tie":0.045598652},{"Win":0.26058924,"Tie":0.045598652}]
+# [{"Win":0.6336246,"Tie":0.052030772},{"Win":0.2623138,"Tie":0.052030772}]
 
 curl -X POST -d '{"players":[[8,29],[9, -1]],"table":[19,47,23], "nb_player": 4, "nb_game": 20000000}' https://localhost:5000/calc-mc
 # {"Win":0.039476465,"Tie":0}
