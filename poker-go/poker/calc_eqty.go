@@ -385,9 +385,9 @@ func CalcEquityMonteCarloOneCoRoutine(playerCards PlayerCards, tableCards []int,
 		}
 		if rank[0] == maxRank {
 			if nbMax == 1 {
-				eqty.Win += 1
+				eqty.Win += 1.0
 			} else {
-				eqty.Tie += float32(1 / nbMax)
+				eqty.Tie += 1.0 / float32(nbMax)
 			}
 		}
 
